@@ -20,7 +20,7 @@ namespace miit::algebra
          * @param c Количество столбцов
          * @param gen Ссылка на генератор
          */
-        Exercise(const size_t r, const size_t c, Generator& gen)
+        Exercise(const size_t r, const size_t c, const Generator& gen)
             : matrix(r, c), generator(gen)
         {
             matrix.fill(generator);
