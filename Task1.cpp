@@ -1,7 +1,7 @@
 #include "Task1.h"
 #include <cmath>
 
-miit::algebra::Task1::Task1(const size_t r, const size_t c, Generator& gen)
+miit::algebra::Task1::Task1(const size_t r, const size_t c, const Generator& gen)
     : Exercise(r, c, gen)
 {
     matrix.fill(generator);
