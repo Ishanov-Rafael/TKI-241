@@ -2,6 +2,9 @@
 
 namespace miit::algebra
 {
+    /**
+     * @brief базовый абстрактный класс генератора чисел
+     */
     class Generator
     {
     public:
