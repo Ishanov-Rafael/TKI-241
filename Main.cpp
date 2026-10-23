@@ -1,0 +1,84 @@
+#include <iostream>
+#include <memory>
+#include "RandomGenerator.h"
+#include "IStreamGenerator.h"
+#include "ConstGenerator.h"
+#include "Task1.h"
+#include "Task2.h"
+
+using namespace miit::algebra;
+
+/*
+* @brief Выбор метода заполнения
+*/
+enum FillMethod { RANDOM = 1, MANUAL = 2, CONSTANT = 3 };
+
+/**
+ * @brief точка входа в программу
+ * @return 0, если программа завершена корректно
+ */
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+
+    size_t rows, cols;
+    std::cout << "Введите количество строк: ";
+    std::cin >> rows;
+    std::cout << "Введите количество столбцов: ";
+    std::cin >> cols;
+
+    std::cout << "Выберите способ заполнения:\n"
+        << FillMethod::RANDOM << " - Случайными числами\n"
+        << FillMethod::MANUAL << " - Вручную\n"
+        << FillMethod::CONSTANT << " - Константным значением\n";
+
+    int choiceInput = 0;
+    std::cin >> choiceInput;
+    FillMethod choice = static_cast<FillMethod>(choiceInput);
+
+    std::unique_ptr<Generator> generator = nullptr;
+
+    switch (choice) {
+    case FillMethod::RANDOM: {
+        int min, max;
+        std::cout << "Введите начало диапазона: ";
+        std::cin >> min;
+        std::cout << "Введите конец диапазона: ";
+        std::cin >> max;
+        generator = std::make_unique<RandomGenerator>(min, max);
+        break;
+    }
+    case FillMethod::MANUAL: {
+        std::cout << "Введите элементы матрицы:\n";
+        generator = std::make_unique<IStreamGenerator>(std::cin);
+        break;
+    }
+    case FillMethod::CONSTANT: {
+        int val;
+        std::cout << "Введите константное значение: ";
+        std::cin >> val;
+        generator = std::make_unique<ConstGenerator>(val);
+        break;
+    }
+    default:
+        std::cout << "Неверный выбор заполнения\n";
+        return 1;
+    }
+    
+    std::cout << "\n ЗАДАЧА 1 \n";
+    Task1 task1(rows, cols, *generator);
+    std::cout << "Исходная матрица:\n" << task1.getMatrix();
+    task1.solve();
+    std::cout << "Результат (Замена нулей на макс. по модулю):\n" << task1.getMatrix();
+
+    std::cout << "\n ЗАДАЧА 2 \n";
+    if (choice == FillMethod::MANUAL) {
+        std::cout << "Введите элементы матрицы заново для задачи 2:\n";
+    }
+    Task2 task2(rows, cols, *generator);
+    std::cout << "Исходная матрица:\n" << task2.getMatrix();
+    task2.solve();
+    std::cout << "Результат (Вставка столбца из нулей после столбцов с макс. элементом):\n" << task2.getMatrix();
+
+    return 0;
+}
