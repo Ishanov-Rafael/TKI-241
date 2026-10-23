@@ -106,7 +106,7 @@ namespace miit::algebra
          * @brief Заполнение матрицы с использованием генератора
          * @param generator Ссылка на генератор
          */
-        void fill(Generator& generator)
+        void fill(const Generator& generator)
         {
             for (size_t i = 0; i < rows; ++i) {
                 for (size_t j = 0; j < cols; ++j) {
