@@ -65,7 +65,7 @@ namespace miit::algebra
          */
         std::vector<T>& operator[](const size_t r, const size_t c)
         {
-            if (r >= rows) {
+            if (r >= data.size()) {
                 throw std::out_of_range("Индекс строки выходит за границы матрицы!");
             }
             if (c >= cols) {
@@ -81,7 +81,7 @@ namespace miit::algebra
          */
         const std::vector<T>& operator[](const size_t r, const size_t c) const
         {
-            if (r >= rows) {
+            if (r >= data.size()) {
                 throw std::out_of_range("Индекс строки выходит за границы матрицы!");
             }
             if (c >= cols) {
