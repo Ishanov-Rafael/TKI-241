@@ -36,10 +36,7 @@ int main()
     std::cin >> choiceInput;
     FillMethod choice = static_cast<FillMethod>(choiceInput);
 
-    Generator* generator = nullptr;
-    RandomGenerator randomGen(0, 0);
-    IStreamGenerator streamGen(std::cin);
-    ConstGenerator constGen(0);
+    std::unique_ptr<Generator> generator = nullptr;
 
     switch (choice) {
     case FillMethod::RANDOM: {
@@ -48,28 +45,26 @@ int main()
         std::cin >> min;
         std::cout << "Введите конец диапазона: ";
         std::cin >> max;
-        randomGen = RandomGenerator(min, max);
-        generator = &randomGen;
+        generator = std::make_unique<RandomGenerator>(min, max);
         break;
     }
     case FillMethod::MANUAL: {
         std::cout << "Введите элементы матрицы:\n";
-        generator = &streamGen;
+        generator = std::make_unique<IStreamGenerator>(std::cin);
         break;
     }
     case FillMethod::CONSTANT: {
         int val;
         std::cout << "Введите константное значение: ";
         std::cin >> val;
-        constGen = ConstGenerator(val);
-        generator = &constGen;
+        generator = std::make_unique<ConstGenerator>(val);
         break;
     }
     default:
         std::cout << "Неверный выбор заполнения\n";
         return 1;
     }
-
+    
     std::cout << "\n ЗАДАЧА 1 \n";
     Task1 task1(rows, cols, *generator);
     std::cout << "Исходная матрица:\n" << task1.getMatrix();
