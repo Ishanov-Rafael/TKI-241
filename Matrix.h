@@ -63,15 +63,12 @@ namespace miit::algebra
          * @param r Индекс строки
          * @return Ссылка на вектор строки
          */
-        std::vector<T>& operator[](const size_t r, const size_t c)
+        std::vector<T>& operator[](const size_t r)
         {
             if (r >= data.size()) {
                 throw std::out_of_range("Индекс строки выходит за границы матрицы!");
             }
-            if (c >= cols) {
-                throw std::out_of_range("Индекс столбца выходит за границы матрицы!");
-            }
-            return data[r][c];
+            return data[r];
         }
 
         /**
@@ -79,15 +76,12 @@ namespace miit::algebra
          * @param r Индекс строки
          * @return Константная ссылка на вектор строки
          */
-        const std::vector<T>& operator[](const size_t r, const size_t c) const
+        const std::vector<T>& operator[](const size_t r) const
         {
             if (r >= data.size()) {
                 throw std::out_of_range("Индекс строки выходит за границы матрицы!");
             }
-            if (c >= cols) {
-                throw std::out_of_range("Индекс столбца выходит за границы матрицы!");
-            }
-            return data[r][c];
+            return data[r];
         }
 
         /**
