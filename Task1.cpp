@@ -4,7 +4,6 @@
 miit::algebra::Task1::Task1(const size_t r, const size_t c, const Generator& gen)
     : Exercise(r, c, gen)
 {
-    matrix.fill(generator);
 }
 
 void miit::algebra::Task1::solve()
