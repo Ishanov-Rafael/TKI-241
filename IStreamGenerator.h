@@ -9,10 +9,10 @@ namespace miit::algebra
     */
     class IStreamGenerator : public Generator
     {
-    /**
-    * @brief ссылка на входной поток из которого считывается точка
-    */
     private:
+        /**
+        * @brief ссылка на входной поток из которого считывается точка
+        */
         std::istream& in;
 
     public:
