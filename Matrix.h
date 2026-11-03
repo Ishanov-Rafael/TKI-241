@@ -16,8 +16,17 @@ namespace miit::algebra
     class Matrix
     {
     private:
+        /**
+        * @brief двумерный вектор в котором хранятся элементы матрицы
+        */
         std::vector<std::vector<T>> data;
+        /**
+        * @brief количество строк матрицы
+        */
         size_t rows;
+        /**
+        * @brief количество столбцов матрицы
+        */
         size_t cols;
     public:
         /**
