@@ -59,11 +59,13 @@ namespace miit::algebra
 
         /**
          * @brief Оператор присваивания копированием
+         * @return ссылка на текущую матрицу
          */
         Matrix& operator=(const Matrix&) = default;
 
         /**
          * @brief Оператор присваивания перемещением
+         * @return ссылка на текущую матрицу
          */
         Matrix& operator=(Matrix&&) noexcept = default;
 
@@ -179,6 +181,9 @@ namespace miit::algebra
 
         /**
          * @brief Переопределение оператора сдвига влево (вывод в поток)
+         * @param os выходной поток
+         * @param matrix матрица которую нужно вывести
+         * @return ссылка на выходной поток
          */
         friend std::ostream& operator<<(std::ostream& os, const Matrix<T>& matrix)
         {
@@ -188,6 +193,9 @@ namespace miit::algebra
 
         /**
          * @brief Переопределение оператора сдвига вправо (ввод из потока)
+         * @param is входной поток
+         * @param matrix матрица в которую считываются элементы
+         * @return ссылка на входной поток
          */
         friend std::istream& operator>>(std::istream& is, Matrix<T>& matrix)
         {
