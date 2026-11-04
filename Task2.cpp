@@ -27,7 +27,7 @@ void miit::algebra::Task2::solve()
         }
     }
 
-    for (int j = static_cast<int>(c) - 1; j >= 0; --j)
+    for (size_t j = static_cast<int>(c) - 1; j >= 0; --j)
     {
         bool contains_max = false;
         for (size_t i = 0; i < r; ++i)
