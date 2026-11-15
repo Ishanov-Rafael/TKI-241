@@ -11,17 +11,29 @@ namespace miit::cinema
     class Film : public Entity
     {
     private:
-        /** @brief Название фильма */
+        /** 
+         * @brief Название фильма 
+         */
         std::string title;
-        /** @brief Длительность фильма в минутах */
+        /** 
+         * @brief Длительность фильма в минутах 
+         */
         int durationMinutes;
-        /** @brief Минимальный возраст зрителя, 0 означает отсутствие ограничения */
+        /** 
+         * @brief Минимальный возраст зрителя, 0 означает отсутствие ограничения 
+         */
         int minAge;
-        /** @brief Краткое содержание фильма */
+        /** 
+         * @brief Краткое содержание фильма 
+         */
         std::string synopsis;
-        /** @brief Режиссёры фильма */
+        /** 
+         * @brief Режиссёры фильма 
+         */
         std::vector<std::string> directors;
-        /** @brief Актёры, задействованные в фильме */
+        /** 
+         * @brief Актёры, задействованные в фильме 
+         */
         std::vector<std::string> actors;
     protected:
         /**
