@@ -20,7 +20,7 @@ namespace
     /**
      * @brief Склеивает имена через запятую
      * @param names Список имён
-     * @return Строка вида «Иванов, Петров»
+     * @return Строка вида "Иванов, Петров"
      */
     std::string join(const std::vector<std::string>& names)
     {
