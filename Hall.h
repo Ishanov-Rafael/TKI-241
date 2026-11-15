@@ -10,9 +10,13 @@ namespace miit::cinema
     class Hall final : public Entity
     {
     private:
-        /** @brief Название зала */
+        /** 
+         * @brief Название зала 
+         */
         std::string name;
-        /** @brief Число зрительских мест в зале */
+        /** 
+         * @brief Число зрительских мест в зале 
+         */
         Quantity seats;
     public:
         /**
