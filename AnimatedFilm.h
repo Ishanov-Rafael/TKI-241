@@ -9,7 +9,9 @@ namespace miit::cinema
     class AnimatedFilm final : public Film
     {
     private:
-        /** @brief Техника анимации */
+        /** 
+         * @brief Техника анимации 
+         */
         std::string technique;
     public:
         /**
@@ -34,7 +36,7 @@ namespace miit::cinema
         const std::string& getTechnique() const noexcept;
         /**
          * @brief Возвращает название вида фильма
-         * @return Строка «Мультфильм»
+         * @return Строка "Мультфильм"
          */
         std::string getKind() const override;
         /**
