@@ -9,11 +9,17 @@ namespace miit::cinema
     class Ticket final : public Entity
     {
     private:
-        /** @brief ID сеанса, на который продан билет */
+        /** @brief 
+         * ID сеанса, на который продан билет 
+         */
         Id sessionId;
-        /** @brief Номер места в зале, начиная с 1 */
+        /** 
+         * @brief Номер места в зале, начиная с 1 
+         */
         Quantity seat;
-        /** @brief Цена билета на момент продажи в копейках */
+        /** 
+         * @brief Цена билета на момент продажи в копейках 
+         */
         Money price;
     public:
         /**
