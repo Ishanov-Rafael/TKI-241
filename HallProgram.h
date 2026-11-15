@@ -10,9 +10,13 @@ namespace miit::cinema
     class HallProgram
     {
     private:
-        /** @brief ID зала */
+        /** 
+         * @brief ID зала 
+         */
         Id hallId;
-        /** @brief ID фильмов зала без повторов в порядке начала сеансов */
+        /** 
+         * @brief ID фильмов зала без повторов в порядке начала сеансов 
+         */
         std::vector<Id> filmIds;
     public:
         /**
