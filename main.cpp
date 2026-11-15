@@ -28,7 +28,7 @@ static void printSession(const Cinema& cinema, const Session& session)
 
 /**
  * @brief Демонстрирует полиморфную коллекцию фильмов и все отчёты кинотеатра
- * @return 0 при успехе, 1 при перехваченном исключении
+ * @return 0 при успешной работе
  */
 int main()
 {
