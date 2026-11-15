@@ -9,9 +9,13 @@ namespace miit::cinema
     class TimeOfDay
     {
     private:
-        /** @brief Часы от 0 до 23 */
+        /** 
+         * @brief Часы от 0 до 23 
+         */
         int hour;
-        /** @brief Минуты от 0 до 59 */
+        /** 
+         * @brief Минуты от 0 до 59 
+         */
         int minute;
     public:
         /**
