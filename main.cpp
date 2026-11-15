@@ -62,7 +62,6 @@ int main()
         std::cout << cinema.getName() << ", сегодня " << today.toString() << "\n\n";
 
         std::cout << "Коллекция фильмов (объекты базового типа Film):\n";
-        // Одна коллекция базового типа содержит объекты разных классов-наследников.
         const std::vector<std::reference_wrapper<const Film>> films = cinema.getFilms();
         for (const Film& film : films)
             std::cout << "ID " << film.getId() << ": " << film.toString() << '\n';
