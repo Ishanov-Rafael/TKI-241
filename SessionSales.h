@@ -9,11 +9,17 @@ namespace miit::cinema
     class SessionSales
     {
     private:
-        /** @brief ID сеанса */
+        /** 
+         * @brief ID сеанса 
+         */
         Id sessionId;
-        /** @brief Количество проданных билетов */
+        /** 
+         * @brief Количество проданных билетов 
+         */
         Quantity ticketsSold;
-        /** @brief Выручка от продажи билетов в копейках */
+        /** 
+         * @brief Выручка от продажи билетов в копейках 
+         */
         Money revenue;
     public:
         /**
