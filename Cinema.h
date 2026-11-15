@@ -19,17 +19,29 @@ namespace miit::cinema
     class Cinema
     {
     private:
-        /** @brief Название кинотеатра */
+        /** 
+         * @brief Название кинотеатра 
+         */
         std::string cinemaName;
-        /** @brief Принадлежащие кинотеатру художественные фильмы */
+        /** 
+         * @brief Принадлежащие кинотеатру художественные фильмы 
+         */
         std::deque<FeatureFilm> featureFilms;
-        /** @brief Принадлежащие кинотеатру мультфильмы */
+        /** 
+         * @brief Принадлежащие кинотеатру мультфильмы 
+         */
         std::deque<AnimatedFilm> animatedFilms;
-        /** @brief Залы кинотеатра */
+        /** 
+         * @brief Залы кинотеатра
+         */
         std::deque<Hall> halls;
-        /** @brief Сеансы всех залов */
+        /** 
+         * @brief Сеансы всех залов 
+         */
         std::deque<Session> sessions;
-        /** @brief Проданные билеты */
+        /** 
+         * @brief Проданные билеты 
+         */
         std::deque<Ticket> tickets;
         /**
          * @brief Проверяет уникальность названия среди всех фильмов
