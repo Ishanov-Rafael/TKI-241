@@ -11,17 +11,29 @@ namespace miit::cinema
     class Session final : public Entity
     {
     private:
-        /** @brief ID зала, в котором идёт сеанс */
+        /** 
+         * @brief ID зала, в котором идёт сеанс 
+         */
         Id hallId;
-        /** @brief ID фильма, который показывают на сеансе */
+        /** 
+         * @brief ID фильма, который показывают на сеансе 
+         */
         Id filmId;
-        /** @brief Дата сеанса */
+        /** 
+         * @brief Дата сеанса 
+         */
         Date date;
-        /** @brief Время начала сеанса */
+        /** 
+         * @brief Время начала сеанса 
+         */
         TimeOfDay start;
-        /** @brief Время окончания сеанса */
+        /** 
+         * @brief Время окончания сеанса 
+         */
         TimeOfDay end;
-        /** @brief Цена одного билета на сеанс в копейках */
+        /** 
+         * @brief Цена одного билета на сеанс в копейках 
+         */
         Money price;
     public:
         /**
