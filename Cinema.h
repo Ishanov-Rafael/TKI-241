@@ -168,17 +168,17 @@ namespace miit::cinema
          */
         const Session& getSession(const Id id) const;
         /**
-         * @brief Записывает сеансы, идущие в указанный момент
-         * @param films Коллекция указателей на филььмы всех видов в порядке возрастания ID
+         * @brief Возвращает все фильмы как коллекцию базового типа
+         * @return Ссылки на фильмы всех видов в порядке возрастания ID
          */
-        void getFilms(std::vector<const Film*>& films) const;
+        std::vector<std::reference_wrapper<const Film>>& getFilms() const;
         /**
-         * @brief Записывает сеансы, идущие в указанынй момент
+         * @brief Показывает сеансы, идущие в указанный момент
          * @param date Дата момента
          * @param time Время момента
-         * @param result Коллекция указателей на сеансы, которые уже начались или еще не закончились, по времени начала и залу
+         * @return Сеансы, которые уже начались и ещё не закончились, по времени начала и залу
          */
-        void getSessionAt(const Date& date, const TimeOfDay& time, std::vector<const Session*>& result) const;
+        std::vector<std::reference_wrapper<const Session>>& getSessionsAt(const Date& date, const TimeOfDay& time) const;
         /**
          * @brief Показывает фильмы по залам, идущие в указанный день
          * @param date Дата
