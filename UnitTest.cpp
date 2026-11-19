@@ -256,22 +256,16 @@ namespace CinemaTests
         TEST_METHOD(SessionsAtGivenTime)
         {
             Fixture f;
-            std::vector<const Session*> atStart;
-            f.cinema.getSessionsAt(f.today, TimeOfDay(10, 0), atStart);
+            auto atStart = f.cinema.getSessionsAt(f.today, TimeOfDay(10, 0));
             Assert::AreEqual<std::size_t>(1, atStart.size());
-            Assert::AreEqual<Id>(f.s1000, atStart[0]->getId());
-            std::vector<const Session*> both;
-            f.cinema.getSessionsAt(f.today, TimeOfDay(10, 45), both);
+            Assert::AreEqual<Id>(f.s1000, atStart[0].get().getId());
+            auto both = f.cinema.getSessionsAt(f.today, TimeOfDay(10, 45));
             Assert::AreEqual<std::size_t>(2, both.size());
-            Assert::AreEqual<Id>(f.s1000, both[0]->getId());
-            Assert::AreEqual<Id>(f.s1030, both[1]->getId());
-            std::vector<const Session*> other;
-            f.cinema.getSessionsAt(f.today, TimeOfDay(11, 50), other);
-            Assert::AreEqual<std::size_t>(1, other.size());
-            f.cinema.getSessionsAt(f.today, TimeOfDay(11, 55), other);
-            Assert::AreEqual<std::size_t>(0, other.size());
-            f.cinema.getSessionsAt(Date(2026, 11, 7), TimeOfDay(10, 45), other);
-            Assert::AreEqual<std::size_t>(0, other.size());
+            Assert::AreEqual<Id>(f.s1000, both[0].get().getId());
+            Assert::AreEqual<Id>(f.s1030, both[1].get().getId());
+            Assert::AreEqual<std::size_t>(1, f.cinema.getSessionsAt(f.today, TimeOfDay(11, 50)).size());
+            Assert::AreEqual<std::size_t>(0, f.cinema.getSessionsAt(f.today, TimeOfDay(11, 55)).size());
+            Assert::AreEqual<std::size_t>(0, f.cinema.getSessionsAt(Date(2026, 11, 7), TimeOfDay(10, 45)).size());
         }    
         /** 
          * @brief Сообщает о возрастном ограничении фильма показанного сеанса 
@@ -413,15 +407,14 @@ namespace CinemaTests
         TEST_METHOD(PolymorphicFilmCollection)
         {
             Fixture f;
-            std::vector<const Film*> films;
-            f.cinema.getFilms(films);
+            auto films = f.cinema.getFilms();
             Assert::AreEqual<std::size_t>(3, films.size());
-            const Film* first = films[0];
-            const Film* last = films[2];
-            Assert::IsTrue(dynamic_cast<const FeatureFilm*>(first) != nullptr);
-            Assert::IsTrue(dynamic_cast<const AnimatedFilm*>(last) != nullptr);
-            Assert::AreEqual(std::string("Мультфильм"), last->getKind());
-            Assert::IsTrue(films[0]->getId() < films[1]->getId());
+            const Film& first = films[0];
+            const Film& last = films[2];
+            Assert::IsTrue(dynamic_cast<const FeatureFilm*>(&first) != nullptr);
+            Assert::IsTrue(dynamic_cast<const AnimatedFilm*>(&last) != nullptr);
+            Assert::AreEqual(std::string("Мультфильм"), last.getKind());
+            Assert::IsTrue(films[0].get().getId() < films[1].get().getId());
         }
         /** 
          * @brief Копия кинотеатра независима и сохраняет ID записей 
