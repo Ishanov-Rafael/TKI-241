@@ -62,20 +62,16 @@ int main()
         std::cout << cinema.getName() << ", сегодня " << today.toString() << "\n\n";
 
         std::cout << "Коллекция фильмов (объекты базового типа Film):\n";
-        std::vector<const Film*> films;
-        cinema.getFilms(films);
-        for (const Film* film : films)
-            std::cout << "ID " << film->getId() << ": " << film->toString() << '\n';
+        const std::vector<std::reference_wrapper<const Film>> films = cinema.getFilms();
+        for (const Film& film : films)
+            std::cout << "ID " << film.getId() << ": " << film.toString() << '\n';
 
         std::cout << "\n1. Сеансы, идущие в 10:45\n";
-        std::vector<const Session*> running;
-        cinema.getSessionsAt(today, TimeOfDay("10:45"), running);
-        for (const Session* session : running)
-            printSession(cinema, *session);
+       for (const Session& session : cinema.getSessionsAt(today, TimeOfDay("10:45")))
+            printSession(cinema, session);
         std::cout << "Сеансы, идущие в 18:30\n";
-        cinema.getSessionsAt(today, TimeOfDay("18:30"), running);
-        for (const Session* session : running)
-            printSession(cinema, *session);
+        for (const Session& session : cinema.getSessionsAt(today, TimeOfDay("18:30")))
+            printSession(cinema, session);
 
 
         std::cout << "\n2. Фильмы по залам на сегодня\n";
