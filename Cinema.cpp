@@ -81,23 +81,27 @@ namespace miit::cinema
         throw std::out_of_range("Сеанс не найден.");
     }
 
-    void Cinema::getFilms(std::vector<const Film*>& films) const
+    std::vector<std::reference_wrapper<const Film>> Cinema::getFilms() const
     {
-        films.clear();
-        for (const Film& film : featureFilms) films.push_back(&film);
-        for (const Film& film : animatedFilms) films.push_back(&film);
-        std::sort(films.begin(), films.end(), [](const Film* a, const Film* b) { return a->getId() < b->getId(); });
+        std::vector<std::reference_wrapper<const Film>> result;
+        for (const Film& film : featureFilms) result.push_back(film);
+        for (const Film& film : animatedFilms) result.push_back(film);
+        std::sort(result.begin(), result.end(),
+            [](const Film& a, const Film& b) { return a.getId() < b.getId(); });
+        return result;
     }
 
-    void Cinema::getSessionsAt(const Date& date, const TimeOfDay& time, std::vector<const Session*>& result) const
+    std::vector<std::reference_wrapper<const Session>> Cinema::getSessionsAt(const Date& date,
+        const TimeOfDay& time) const
     {
-        result.clear();
+        std::vector<std::reference_wrapper<const Session>> result;
         for (const Session& session : sessions)
-            if (session.isRunningAt(date, time)) result.push_back(&session);
-        std::sort(result.begin(), result.end(), [](const Session* a, const Session* b)
+            if (session.isRunningAt(date, time)) result.push_back(session);
+        std::sort(result.begin(), result.end(), [](const Session& a, const Session& b)
         {
-            return a->getStart() == b->getStart() ? a->getHallId() < b->getHallId() : a->getStart() < b->getStart();
+            return a.getStart() == b.getStart() ? a.getHallId() < b.getHallId() : a.getStart() < b.getStart();
         });
+        return result;
     }
 
     std::vector<HallProgram> Cinema::getFilmsByHalls(const Date& date) const
